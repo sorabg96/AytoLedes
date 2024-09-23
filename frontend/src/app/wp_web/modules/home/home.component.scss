@@ -1,0 +1,20 @@
+.text-notice{
+    font-size: 4vw;
+    font-family: "Constantia",cursive;
+    font-weight: 900;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: normal;
+    padding:0 6vw;
+    @media screen and (max-width:550px) {
+        font-size: 7vw;
+    }
+}
+
+hr {
+    width: 50%;
+    background-color: black;
+  }

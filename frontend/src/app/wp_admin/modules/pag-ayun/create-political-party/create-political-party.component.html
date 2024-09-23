@@ -1,0 +1,62 @@
+
+<div  class="container_title" id="top"> 
+    <h2 *ngIf="!getparamid" class="title">Crear Usuario de la Coorporacion Municipal</h2>
+    <h2 *ngIf="getparamid" class="title">Editar Usuario de la Coorporacion Municipal</h2>
+  </div> 
+  <app-scroll-to-top></app-scroll-to-top>
+  <div class="container_post">
+      <form class="form_post" [formGroup]="PoliticalPartyForm">
+        <!--return botton-->
+        <mat-icon style="float: left; padding-bottom: 20px;" routerLink="/wp_admin/ayuntamiento" aria-hidden="false">keyboard_return</mat-icon>    
+        <!-- show error -->
+        <div *ngIf="errormsg" class="alert_error" role="alert">
+          <strong>{{errormsg}}</strong>
+        </div>
+        <!-- show success -->
+        <div *ngIf="successmsg" class="alert_success" role="alert">
+          <strong>{{successmsg}}</strong>
+        </div>
+  
+  
+          <mat-form-field class="input_post">
+              <mat-label>Nombre Partido Politico</mat-label>
+              <input type="text" matInput [formControl]="titleFormControl" placeholder="Ej. PARTIDO...">
+              @if (titleFormControl.hasError('required')) {
+                <mat-error>El nombre del partido politico es <strong>requerido</strong></mat-error>
+              }
+          </mat-form-field>
+
+          <mat-form-field *ngIf="getparamid" class="input_post">
+            <mat-label>Posicion</mat-label>
+            <input type="text" matInput [formControl]="ordenFormGroup" placeholder="Ej. Paseo del rollo, Ledesma">
+            @if (ordenFormGroup.hasError('required')) {
+              <mat-error>El cargo politico del usuario es <strong>requerido</strong></mat-error>
+            }
+        </mat-form-field>
+  
+          <mat-form-field class="input_post">
+            <mat-label>Imagen</mat-label>
+            <ngx-mat-file-input type="file" (change)="selectImage($event)" #imageInput [formControl]="imageFormControl" placeholder="Ex. image.png" [accept]="'image/png, image/jpeg, image/jpg'"></ngx-mat-file-input>
+            <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="!imageInput.empty" (click)="imageInput.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </div>
+            <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="imageInput.empty">
+              <mat-icon>folder</mat-icon>
+            </div>
+           
+        </mat-form-field>
+  
+        <mat-card>
+            <img [src]="imgURL" [alt]="imgURL">
+        </mat-card> 
+  
+          &nbsp;
+          <div class="button_post" *ngIf="!getparamid" (click)="postSubmit()">
+              <button mat-raised-button color="primary" routerLink="." type="reset">Crear</button>
+          </div>
+          <div class="button_post" *ngIf="getparamid" (click)="postUpdate()">
+            <button mat-raised-button color="primary" routerLink=".">Editar</button>
+          </div>
+  
+      </form>
+  </div>

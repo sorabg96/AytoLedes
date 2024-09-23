@@ -1,0 +1,93 @@
+.cover {
+  position: relative;
+  padding-top: 60px;
+  display: flex; /* propiedad flexbox */
+  justify-content: center; /* centra el contenido horizontalmmente */
+}
+
+.even {
+  background: linear-gradient(70deg, rgb(194, 194, 194), rgb(255, 255, 255));
+  padding: 20px 40px 40px;
+  width: 80%;
+  max-height: 100%;
+}
+.even__image {
+  width: 40%;
+  min-width: 250px;
+  max-height: 100%;
+  margin: 30px 30px 30px 0;
+  padding-left: 20px;
+  float: left;
+}
+@media (max-width: 640px) {
+  .even__image {
+    width: 100%;
+    display: block;
+    float: none;
+    margin: 0%;
+    padding: 0%;
+  }
+}
+.even__text {
+  display: inline;
+  background-color: aqua;
+  max-width: 100%;
+  width: 500px;
+  max-height: 100%;
+}
+.even__title {
+  padding: 30px 0px 30px 0px;
+  line-height: 1;
+  font-size: xx-large;
+  font-weight: bold;
+  font-style: italic;
+  color: #3f3851;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .even__title {
+    padding: 5px;
+  }
+}
+
+.odd {
+  background: linear-gradient(-70deg, rgb(174, 171, 171), rgb(255, 255, 255));
+  padding: 20px 40px 40px;
+  width: 80%;
+  max-height: 100%;
+}
+.odd__image {
+  width: 40%;
+  min-width: 250px;
+  max-height: 100%;
+  margin: 30px 30px 30px 0;
+  padding-left: 20px;
+  float: right;
+}
+@media (max-width: 640px) {
+  .odd__image {
+    width: 100%;
+    display: block;
+    float: none;
+    margin: 0%;
+    padding: 0%;
+  }
+}
+.odd__text {
+  display: inline;
+  width: 100%;
+}
+.odd__title {
+  padding: 30px 0px 30px 0px;
+  line-height: 1;
+  font-size: xx-large;
+  font-weight: bold;
+  font-style: italic;
+  color: #3f3851;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .odd__title {
+    padding: 5px;
+  }
+}/*# sourceMappingURL=asoc.component.css.map */

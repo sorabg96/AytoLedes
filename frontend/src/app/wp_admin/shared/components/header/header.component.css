@@ -1,0 +1,14 @@
+ul li {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  max-width: 25px;
+  height: auto;
+}
+
+span {
+  align-items: center;
+  text-align: center;
+}/*# sourceMappingURL=header.component.css.map */

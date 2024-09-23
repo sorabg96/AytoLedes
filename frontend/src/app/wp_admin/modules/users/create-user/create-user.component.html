@@ -1,0 +1,61 @@
+<div class="container_title" id="top"> 
+  <h2 *ngIf="!getparamid" class="title">Crear Usuario</h2>
+  <h2 *ngIf="getparamid" class="title">Editar Usuario</h2>
+</div> 
+
+<div class="container_user">
+    <form class="form_user" [formGroup]="userForm">
+      <!--return botton-->
+      <button mat-icon-button style="float: left; margin-bottom: 20px;" routerLink="/wp_admin/usuarios">
+        <mat-icon>keyboard_return</mat-icon>
+      </button>
+      <!-- show error -->
+      <div *ngIf="errormsg" class="alert_error" role="alert">
+        <strong>{{errormsg}}</strong>
+      </div>
+      <!-- show success -->
+      <div *ngIf="successmsg" class="alert_success" role="alert">
+        <strong>{{successmsg}}</strong>
+      </div>
+      <!-- show email_error -->
+      <div *ngIf="email_errormsg" class="alert_error" role="alert">
+        <strong>{{email_errormsg}}</strong>
+      </div>
+
+
+        <mat-form-field class="input_user">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput [formControl]="usernameFormControl" placeholder="Ej. admin_616">
+            @if (usernameFormControl.hasError('required')) {
+              <mat-error>El nombre de usuario es <strong>requerido</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="input_user">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ej. admin_616@example.com">
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+              <mat-error>Por favor, introduzca su email</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+              <mat-error>El email del usuario es <strong>requerido</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="input_user">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput [formControl]="passwordFormControl" placeholder="Ex. 34500-pass">
+            @if (passwordFormControl.hasError('required')) {
+              <mat-error>La contraseña del usuario es <strong>requerida</strong></mat-error>
+            }
+        </mat-form-field>
+        
+        <div class="button_user" *ngIf="!getparamid" (click)="userSubmit()">
+            <button mat-raised-button color="primary" routerLink=".">Crear</button>
+        </div>
+        <div class="button_user" *ngIf="getparamid" (click)="userUpdate()">
+          <button mat-raised-button color="primary" routerLink=".">Editar</button>
+      </div>
+    </form>
+
+</div>

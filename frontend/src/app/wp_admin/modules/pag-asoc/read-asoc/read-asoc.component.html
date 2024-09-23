@@ -1,0 +1,99 @@
+<div class="container1">  
+    <div class="icon1" matTooltip="Crear Usuario" ><mat-icon class="icon_create" routerLink="crear" aria-hidden="false">control_point</mat-icon></div>
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput placeholder="" search (keyup)="applyFilter($event)" #input/>
+    </mat-form-field>
+  <div class="container2">
+    <!-- show success -->
+    <div *ngIf="successmsg" class="alert_success" role="alert" >
+      <strong>{{successmsg}}</strong>
+    </div>
+  </div>  
+  </div>
+  
+  
+  
+  <div class="container3">
+    <div class="mat-elevation-z8">
+      <table mat-table  matSort [dataSource]="dataSource">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let asocServices"> {{asocServices.id}} </td>
+        </ng-container>
+      
+        <!-- title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> TITULO </th>
+          <td mat-cell *matCellDef="let asocServices"> {{asocServices.title}} </td>
+        </ng-container>
+      
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > IMAGEN </th>
+          <td mat-cell *matCellDef="let asocServices">
+            <a href="http://localhost:3000/{{asocServices.image}}" target="_blank">{{asocServices.image}}</a>
+          </td>
+        </ng-container>
+      
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCIÓN </th>
+          <td mat-cell *matCellDef="let asocServices; let i = index;">
+              <!--Show more/less buttom-->
+              <ng-container>
+                {{ asocServices.show ? asocServices.description: (asocServices.description| slice:0:100)}} 
+                
+                <div align="center" *ngIf="asocServices.description.length > 5;" (click)="( asocServices.show == i ? asocServices.show = !asocServices.show : asocServices.show = i )">
+                  <mat-icon> {{ ((asocServices.show)) ? 'remove' : 'add' }} </mat-icon>
+                </div>
+                
+              </ng-container>
+          </td>
+        </ng-container>
+  
+        <!-- contactInfo Column -->
+        <ng-container matColumnDef="contactinf">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Informacion de Contacto </th>
+          <td mat-cell *matCellDef="let asocServices"> {{asocServices.contactinf}} </td>
+        </ng-container>
+
+        <!-- location Column -->
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Informacion de Contacto </th>
+          <td mat-cell *matCellDef="let asocServices"> {{asocServices.location}} </td>
+        </ng-container>
+
+        <!-- Creation_date Column -->
+        <ng-container matColumnDef="creationdate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA DE CREACIÓN </th>
+          <td mat-cell *matCellDef="let asocServices"> {{asocServices.creationdate | date: 'dd-MM-yyyy HH:mm a'}} </td>
+        </ng-container>
+
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="action" >
+          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+          <td mat-cell *matCellDef="let asocServices" class="icon_action">
+            <mat-icon [routerLink]="['editar',asocServices.id]" matTooltip="Editar" >edit</mat-icon>
+            &nbsp;
+            &nbsp;
+            <mat-icon (click)="deleteID(asocServices.id)" matTooltip="Borrar" >delete</mat-icon>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        <!--When the filter does not find data-->
+        <tr *matNoDataRow>
+          <td class="mat_cell" colspan="4"> El filtro no ha encontrado ninguna coincidencia en los datos para <strong>{{input.value}}</strong></td>
+        </tr>
+  
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of Associations"></mat-paginator>
+  
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+<div [align]="'end'"><mat-icon (click)="closeDialog()">close</mat-icon></div>    
+<h2 [align]="'center'" mat-dialog-title class="title">{{data.title}}</h2>
+
+<div mat-dialog-content class="content">
+    {{data.message}}
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">{{data.comfirmText}}</button>    
+    <button mat-raised-button [mat-dialog-close]="false">{{data.cancelText}}</button>
+</div>

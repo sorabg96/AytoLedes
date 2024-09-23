@@ -1,0 +1,46 @@
+<div style="position: relative;">
+    <div *ngFor="let g of gData;" id="saludo_alcalde" >
+        <div class="cover">
+            <div class="section">
+                    <div class="section__title">{{g.title}}</div>        
+                    <img class="section__image" src='http://localhost:3000/{{g.image}}' alt='Imagen de {{g.title}}'>
+                    <p class="section_text">
+                        {{g.description}}
+                    </p>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider style="padding: 30px 0;" id="coorporacion_municipal"></mat-divider>
+
+    <h2 class="section2__title" >COORPORACION MUNICIPAL</h2>
+
+    <div *ngFor="let pp of ppData">
+        <div class="cover">
+            <div  class="section2">
+                    <div class="section2__title">{{pp.title}}</div> 
+                    <div *ngFor="let mc of mcData">
+                        <div *ngIf="pp.title == mc.politicalParty" class="">
+                                    
+                                <!--<img class="section2__image" src='assets/No_Image_Available.jpg' alt='Imagen de {{mc.fullname}}'>
+                                src='http://localhost:3000/{{mc.image}}'-->
+                                <p class="section2_text">
+                                    <strong>{{mc.fullname}}</strong>: {{mc.politicalOffice}}
+                                </p>
+                                <p class="section2_text">
+                                    <mat-icon>phone</mat-icon>{{mc.phoneNumber}}
+                                </p>
+                                <p class="section2_text">
+                                    <mat-icon>email</mat-icon>{{mc.email}}
+                                </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@defer (on timer(100)) { 
+    <div>
+       <app-footerw></app-footerw>
+    </div>}   

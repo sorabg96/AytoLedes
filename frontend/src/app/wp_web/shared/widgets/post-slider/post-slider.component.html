@@ -1,0 +1,43 @@
+    <section class="product" [ngClass]="{'singleImageFull': singleImage == true && IsDescript == false, 'singleImageSmall': singleImage == true && IsDescript == true, 'doubleImage': doubleImage == true, 'multipleImges': doubleImage == false && singleImage== false}">
+        @if (singleImage== false) {
+        <div class="container-fluid">
+            <div class="slider-wrap">
+                <div class="slider-main">
+                    <div class="item" *ngFor="let pd of images">
+                        <img  [src]="pd.imgSrc" [alt]="pd.imgSrc" (click)="openImage(pd.imgSrc)"> 
+                        <!--<div class="text-hover">
+                                <div>{{pd}}</div>                         
+                        </div>-->
+                    </div>
+                </div>
+                
+    <!--Button Area-->
+
+                <div class="button-area">
+
+                    <button class="btn-slider btn-prev" (click)="onPrevClick()">
+                        <i class="fas fa-arrow-circle-left icon-slider icon-prev"></i>
+                    </button>
+
+                    <button class="btn-slider btn-next" (click)="onNextClick()">
+                        <i class="fas fa-arrow-circle-right icon-slider icon-next"></i>
+                    </button>
+                    
+                </div>
+
+            </div>
+        </div>
+        } @else {
+            <div class="oneitem" *ngFor="let pd of images">
+                <img [src]="pd.imgSrc" [alt]="pd.imgSrc" (click)="openImage(pd.imgSrc)"> 
+            </div>
+        }
+    </section>
+
+    <!--<div mat-menu-item *ngFor="let pd of postData;" id="{{pd.postname}}" style="margin: 0; padding: 0; width: 100%; background-color: azure; position: relative;">
+        <div>{{pd.postname}}</div>        
+        <img src='http://localhost:3000/{{pd.image}}' alt='Imagen de {{pd.postname}}'>
+        <p >
+            {{pd.description}}
+        </p>
+    </div> -->

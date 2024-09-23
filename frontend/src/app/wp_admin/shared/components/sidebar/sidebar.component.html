@@ -1,0 +1,61 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>Soufiane FADIL</h2>
+            <h4>example&#64;email.com</h4>
+        </div>
+        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Soufiane FADIL">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Paginas</h2>
+
+
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="dashboard">
+            <mat-icon>home</mat-icon>
+            Dashboard
+        </a>
+
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="noticias">
+            <mat-icon>book</mat-icon>
+            Noticias
+        </a>
+
+        <mat-expansion-panel [class.mat-elevation-z0]="true">
+
+            <mat-expansion-panel-header>
+                <a class="subnav" mat-list-item routerLinkActive="list-item-active">
+                    <mat-icon>format_list_bulleted</mat-icon>Paginas
+                </a>
+            </mat-expansion-panel-header>
+
+            
+            <mat-nav-list>
+                <a mat-list-item routerLinkActive="list-item-active" routerLink="ayuntamiento">Ayuntamiento</a>
+
+                <a mat-list-item routerLinkActive="list-item-active" routerLink="servicios-municipales">Servicios Municipales</a>
+
+                <a mat-list-item routerLinkActive="list-item-active" routerLink="otros-servicios">Otros Servicios</a>
+
+                <a mat-list-item routerLinkActive="list-item-active" routerLink="zonas-deportivas">Zonas Deportivas</a>
+    
+                <a mat-list-item routerLinkActive="list-item-active" routerLink="asociaciones">Asociaciones</a>
+            </mat-nav-list>
+        </mat-expansion-panel>                  
+        
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Herramientas</h2>
+
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="usuarios">
+            <mat-icon class="list_img">account_box</mat-icon>
+            Usuarios
+        </a>
+ 
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="historial">
+            <mat-icon class="list_img">track_changes</mat-icon>
+            Historico
+        </a>
+
+</mat-nav-list>

@@ -1,0 +1,117 @@
+<div class="container1">  
+    <div class="icon1" matTooltip="Crear Noticia" ><mat-icon class="icon_create" routerLink="crear" aria-hidden="false">control_point</mat-icon></div>
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput placeholder="" search (keyup)="applyFilter($event)" #input/>
+    </mat-form-field>
+  <div class="container2">
+    <!-- show success -->
+    <div *ngIf="successmsg" class="alert_success" role="alert" >
+      <strong>{{successmsg}}</strong>
+    </div>
+  </div>  
+  </div>
+  
+  
+  
+  <div class="container3">
+    <div class="mat-elevation-z8">
+      <table mat-table  matSort [dataSource]="dataSource">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let posts"> {{posts.id}} </td>
+        </ng-container>
+      
+        <!-- Postname Column -->
+        <ng-container matColumnDef="postname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> TITULO </th>
+          <td mat-cell *matCellDef="let posts"> {{posts.postname}} </td>
+        </ng-container>
+      
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > IMAGEN </th>
+          <td mat-cell *matCellDef="let posts">
+            <a href="http://localhost:3000/{{posts.image}}" target="_blank">{{posts.image}}</a>
+          </td>
+        </ng-container>
+      
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCIÓN </th>
+          <td mat-cell *matCellDef="let posts; let i = index;">
+              <!--Show more/less buttom-->
+              <ng-container>
+                {{ posts.show ? posts.description: (posts.description| slice:0:100)}} 
+                
+                <div align="center" *ngIf="posts.description.length > 5;" (click)="( posts.show == i ? posts.show = !posts.show : posts.show = i )">
+                  <mat-icon> {{ ((posts.show)) ? 'remove' : 'add' }} </mat-icon>
+                </div>
+                
+              </ng-container>
+          </td>
+        </ng-container>
+  
+        <!-- Images Column -->
+        <ng-container matColumnDef="images">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > IMAGENES de Soporte </th>
+          <td mat-cell *matCellDef="let posts">
+            <div *ngIf="posts.images.includes(',')">
+              <div *ngFor="let ps of posts.images.split(',')">
+                <a href="http://localhost:3000/{{ps}}" target="_blank">{{ps}}</a><br>
+              </div>
+            </div>
+            <div *ngIf="!posts.images.includes(',')">
+              <a href="http://localhost:3000/{{posts.images}}" target="_blank">{{posts.images}}</a>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- pdf Column -->
+        <ng-container matColumnDef="pdf">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > PDF </th>
+          <td mat-cell *matCellDef="let posts">
+            <div *ngIf="posts.pdf.includes(',')">
+              <div *ngFor="let ps of posts.pdf.split(',')">
+                <a href="http://localhost:3000/{{ps}}" target="_blank">{{ps}}</a><br>
+              </div>
+            </div>
+            <div *ngIf="!posts.pdf.includes(',')">
+              <a href="http://localhost:3000/{{posts.pdf}}" target="_blank">{{posts.pdf}}</a>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Creation_date Column -->
+        <ng-container matColumnDef="creationdate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA DE CREACIÓN </th>
+          <td mat-cell *matCellDef="let posts"> {{posts.creationdate | date: 'dd-MM-yyyy HH:mm a'}} </td>
+        </ng-container>
+
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="action" >
+          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+          <td mat-cell *matCellDef="let posts" class="icon_action">
+            <mat-icon [routerLink]="['editar',posts.id]" matTooltip="Editar" aria-hidden="false">edit</mat-icon>
+            &nbsp;
+            &nbsp;
+            <mat-icon (click)="deleteID(posts.id)" matTooltip="Borrar" aria-hidden="false">delete</mat-icon>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        <!--When the filter does not find data-->
+        <tr *matNoDataRow>
+          <td class="mat_cell" colspan="4"> El filtro no ha encontrado ninguna coincidencia en los datos para <strong>{{input.value}}</strong></td>
+        </tr>
+  
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of Services"></mat-paginator>
+  
+    </div>
+  </div>

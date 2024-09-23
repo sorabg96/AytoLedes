@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 999999;
+}
+
+#btn-mas{
+    display:none;
+}
+.container{
+    position: fixed;
+    top: 80px;
+    right:2%;
+    @media screen and (max-width:640px) {
+        top: 80px;
+        right:0px;
+    }
+}
+
+.redes a, .icon-mas2{
+    object-fit: fill;
+    display: block;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    transition: all 500ms ease;
+    .title{display: none;}
+
+}
+.redes a:hover{
+    .title{display: contents;}
+    .facebook{background: rgb(10, 23, 255);}
+    .instagram{background: rgb(5, 255, 251);}
+    .twitterx{background: rgb(0, 0, 0);}
+    .whatsapp{background: rgb(9, 255, 0);}
+}
+.redes a{
+    margin-top: 15px;
+    opacity: 0;
+    visibility: hidden;
+}
+#btn-mas:checked ~ .redes a{
+margin: 0;
+    opacity: 1;
+    visibility: visible;
+}
+.icon-mas2{
+    cursor: pointer;
+    font-size: 23px;
+    align-content: center;
+    padding: 5px;
+}
+.btn-mas{
+    background-color: rgb(216, 216, 216);
+    border-top-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+    @media screen and (max-width:640px) {
+        border-top-left-radius: 25%;
+        border-bottom-left-radius: 25%;
+        border-bottom-right-radius: 0%;
+    }
+}
+
+#btn-mas:checked ~ .btn-mas .icon-mas2{
+    transform: rotate(137deg);
+    font-size: 25px;
+}
+
+.icon-socialmedia{
+    width: 100%;
+    height: 100%;
+}
+
+.icon-socialmedia1{
+    width: 75%;
+}
+
+.redes{
+    margin-top: 10px;
+}
+

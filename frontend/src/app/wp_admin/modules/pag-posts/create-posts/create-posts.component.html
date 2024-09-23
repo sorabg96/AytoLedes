@@ -1,0 +1,171 @@
+
+<div  class="container_title" id="top"> 
+  <h2 *ngIf="!getparamid" class="title">Crear Noticia</h2>
+  <h2 *ngIf="getparamid" class="title">Editar Noticia</h2>
+</div> 
+<app-scroll-to-top></app-scroll-to-top>
+<div class="container_post">
+    <form class="form_post" [formGroup]="postForm">
+      <!--return botton-->
+      <mat-icon style="float: left; padding-bottom: 20px;" routerLink="/wp_admin/noticias" aria-hidden="false">keyboard_return</mat-icon>    
+      <!-- show error -->
+      <div *ngIf="errormsg" class="alert_error" role="alert">
+        <strong>{{errormsg}}</strong>
+      </div>
+      <!-- show success -->
+      <div *ngIf="successmsg" class="alert_success" role="alert">
+        <strong>{{successmsg}}</strong>
+      </div>
+
+        <!--TITLE-->
+        <mat-form-field class="input_post">
+            <mat-label>Titulo</mat-label>
+            <input  maxlength=50 type="text" matInput [formControl]="postnameFormControl" placeholder="Ej. Ejemplo 2023">
+            @if (postnameFormControl.hasError('required')) {
+              <mat-error>El titulo de la noticia es <strong>requerido</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <!--DESCRIPTION-->
+        <mat-form-field class="input_post">
+            <mat-label>Descripcion</mat-label>
+            <textarea type="text" matInput [formControl]="descriptionFormControl" placeholder="Ex. Esta semana santa..."></textarea>
+        </mat-form-field>
+
+        <!--MULTIPLE PDF UPDATE-->
+        <br>
+        <mat-form-field class="input_post"> 
+          <mat-label>Documentos de texto/ PDFs</mat-label>
+          <ngx-mat-file-input type="file" multiple (change)="selectMultiplePdf($event)" #multiplepdfInput [formControl]="pdfFormControl" placeholder="Ex. pdf.png" [accept]="'application/pdf, application/docx, application/doc'"></ngx-mat-file-input>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="!multiplepdfInput.empty" (click)="multiplepdfInput.clear($event); nopdf()">
+            <mat-icon >clear</mat-icon>
+          </div>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="multiplepdfInput.empty">
+            <mat-icon >folder</mat-icon>
+          </div>
+        </mat-form-field>
+
+        <div class="content-pdf" *ngFor="let url of pdfURL; let i=index">
+              <div class="move-pdf" *ngIf="!(this.pdfURL.length === 1)">
+                  <div *ngIf="!(this.pdfURL.indexOf(url) === 0)" style="display: inline-block;">
+                        <button 
+                        style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0; display: inline-block;"
+                        mat-icon-button
+                        matSuffix
+                        (click)="movetoleftpdf(url)">
+                            <mat-icon aria-hidden="false">arrow_upward</mat-icon>
+                        </button>
+                  </div>
+                  <div *ngIf="!(this.pdfURL.indexOf(url) === (this.pdfURL.length - 1))" style="display: inline-block;">
+                        <button 
+                        style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0; display: inline-block;"
+                        mat-icon-button
+                        matSuffix
+                        (click)="movetorightpdf(url)">
+                            <mat-icon aria-hidden="false">arrow_downward</mat-icon>
+                        </button>
+                  </div>
+              </div>
+
+              <div class="pdf">
+                    <a [href]="url.value" target="_blank" download="{{url.name}}">{{url.name}}</a>
+              </div>
+
+              <div class="delete-pdf">
+                      <button 
+                      style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0;"
+                      mat-icon-button
+                      matSuffix
+                      (click)="deletepdf(url)">
+                          <mat-icon color="accent" aria-hidden="false">clear</mat-icon>
+                      </button>
+              </div>
+        </div>
+
+  &nbsp;
+<!--IMAGES UPDATE FRONTPAGE-->
+        <mat-form-field class="input_post">
+          <mat-label>Imagen Portada</mat-label>
+          <ngx-mat-file-input type="file" (change)="selectImage($event)" #imageInput [formControl]="imageFormControl" placeholder="Ex. image.png" [accept]="'image/png, image/jpeg, image/jpg'"></ngx-mat-file-input>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="!imageInput.empty" (click)="imageInput.clear($event); noimage()">
+            <mat-icon >clear</mat-icon>
+          </div>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="imageInput.empty">
+            <mat-icon >folder</mat-icon>
+          </div>
+          @if (imageFormControl.hasError('required')) {
+            <mat-error>La imagen de esta noticia es <strong>requerida</strong></mat-error>
+          }
+      </mat-form-field>
+
+      
+      <mat-card>
+          <img [src]="imgURL" [alt]="imgURL">
+      </mat-card> 
+
+
+<!--MULTIPLE IMAGES UPDATE-->
+        <br>
+        <mat-form-field class="input_post"> 
+          <mat-label>Imagenes Multiples</mat-label>
+          <ngx-mat-file-input type="file" multiple (change)="selectMultipleImage($event)" #multipleimageInput [formControl]="imagesFormControl" placeholder="Ex. image.png" [accept]="'image/png, image/jpeg, image/jpg'"></ngx-mat-file-input>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="!multipleimageInput.empty" (click)="multipleimageInput.clear($event); noimages()">
+            <mat-icon >clear</mat-icon>
+          </div>
+          <div style="margin-right: 10px;" mat-icon-button matSuffix *ngIf="multipleimageInput.empty">
+            <mat-icon >folder</mat-icon>
+          </div>
+      </mat-form-field>
+
+      <div style="position: absolute; width: 100% auto ; height: auto; left: 0; right: 0; margin-left: 1% ;margin-right: 1%; padding-bottom: 80px;">
+        <div *ngFor="let url of imgsURL" style=" width: 30%; display: inline-block; padding: 10px; ">
+                
+                  <mat-card-header style="background-color: rgba(2, 5, 58, 0.607);">    
+                      <mat-card-title-group>
+                          <div *ngIf="!(this.imgsURL.length === 1)">
+                              <div *ngIf="!(this.imgsURL.indexOf(url) === 0)" style="display: inline-block;">
+                                    <button 
+                                    style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0; display: inline-block;"
+                                    mat-icon-button
+                                    matSuffix
+                                    (click)="movetoleft(url)">
+                                        <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
+                                    </button>
+                              </div>
+                              <div *ngIf="!(this.imgsURL.indexOf(url) === (this.imgsURL.length - 1))" style="display: inline-block;">
+                                    <button 
+                                    style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0; display: inline-block;"
+                                    mat-icon-button
+                                    matSuffix
+                                    (click)="movetoright(url)">
+                                        <mat-icon aria-hidden="false">keyboard_arrow_right</mat-icon>
+                                    </button>
+                              </div>
+                          </div>
+                              <button 
+                              style="cursor: pointer; background-color: inherit; border: none; padding: 0; margin: 0;"
+                              mat-icon-button
+                              matSuffix
+                              (click)="deleteimage(url)">
+                                  <mat-icon color="accent" aria-hidden="false">clear</mat-icon>
+                              </button>
+                      </mat-card-title-group>
+                  </mat-card-header>
+
+                      <mat-card>
+                          <img [src]="url" [alt]="url">
+                      </mat-card> 
+        </div>
+          &nbsp;
+
+        <div class="button_post" *ngIf="!getparamid" >
+            <button mat-raised-button (click)="postSubmit()" color="primary" routerLink="." type="reset">Crear</button>
+        </div>
+        <div  class="button_post" *ngIf="getparamid" >
+          <button #btn mat-raised-button (click)="postUpdate(); btn.disabled = true;" color="primary" routerLink=".">Editar</button>
+        </div> 
+        
+     </div>
+
+    </form>
+</div>

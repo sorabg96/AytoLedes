@@ -1,0 +1,98 @@
+.cover{
+  position: relative;
+  padding-top: 60px;
+  display: flex; /* propiedad flexbox */
+  justify-content: center; /* centra el contenido horizontalmmente */
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+.even {
+  background: linear-gradient(70deg, #2C63A8, #FBF8E4);
+  padding: 20px 40px 40px;
+  width: 80%;
+  max-height: 100%;
+  &__image {
+    width: 40%;
+    min-width: 250px;
+    max-height: 100%;
+    margin: 30px 30px 30px 20px;
+    float: left;
+    border:solid 5px #E4F5E2;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    @media (max-width: 640px) {
+      width: 100%;
+      display: block;
+      float: none;
+      margin: 0%;
+      padding: 0%;
+    }
+  }
+
+  &__text {
+      display: inline;
+      max-width: 100%;
+      width: 500px;
+      max-height: 100%;
+  }
+
+  &__title {
+    padding: 30px 0px 30px 0px;
+    line-height: 1;
+    font-size: xx-large;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+    text-shadow: -1px 0 rgb(0, 97, 153), 1px 0 rgb(9, 172, 190), 0 1px rgb(54, 0, 153), 0 -1px rgb(0, 112, 153);
+    text-align: center;
+    @media (max-width: 640px) {
+      padding: 5px;
+    }
+  }
+}
+  
+
+.odd {
+  background: linear-gradient(-70deg, #2C63A8, #FBF8E4);
+
+  padding: 20px 40px 40px;
+  width: 80%;
+  max-height: 100%;
+
+  &__image {
+    width: 40%;
+    min-width: 250px;
+    max-height: 100%;
+    margin: 30px 30px 30px 20px;
+    float: right;
+    border:solid 5px #2439bf;
+    border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+    @media (max-width: 640px) {
+      width: 100%;
+      display: block;
+      float: none;
+      margin: 0%;
+      padding: 0%;
+    }
+  }
+
+  &__text {
+      display: inline;
+      width: 100%;
+  }
+
+  &__title {
+    padding: 30px 0px 30px 0px;
+    line-height: 1;
+    font-size: xx-large;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+    text-shadow: -1px 0 rgb(0, 97, 153), 1px 0 rgb(9, 172, 190), 0 1px rgb(54, 0, 153), 0 -1px rgb(0, 112, 153);
+    text-align: center;
+    @media (max-width: 640px) {
+      padding: 5px;
+    }
+  }
+}
+

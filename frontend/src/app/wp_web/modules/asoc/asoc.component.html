@@ -1,0 +1,27 @@
+<div id="text_des">
+<div mat-menu-item *ngFor="let a of AData ; odd as isOdd; even as isEven;" id="{{a.title}}" class="cover">
+    <div [ngClass]="{even: isEven, odd: isOdd}">
+
+        <img [ngClass]="{even__image: isEven, odd__image: isOdd}" src='assets/No_Image_Available.jpg' alt='Imagen de {{a.title}}'>
+        <!--src='http://localhost:3000/{{a.image}}'-->
+
+        <div [ngClass]="{even__text: isEven, odd__text: isOdd}" >
+                <div [ngClass]="{even__title: isEven, odd__title: isOdd}">{{a.title}}</div>
+                <p>
+                    {{a.description}}
+                </p>
+                <p>
+                    <mat-icon>location_pin</mat-icon> {{a.location}}
+                </p>            
+                <p >
+                    <mat-icon>help</mat-icon> {{a.contactinf}}
+                </p>
+        </div>
+    </div>
+
+</div>
+</div>
+@defer (on timer(100)) { 
+    <div style="padding-top: 60px;">
+       <app-footerw></app-footerw>
+    </div>}   

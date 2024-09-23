@@ -1,0 +1,52 @@
+<div class="content">
+    <div class="container">
+        <div class="slider-container">
+            <ng-container *ngFor="let pd of postData?.reverse(); let i=index;" >
+                    <div class="slider-item" 
+                    *ngIf="i<=sliceitem"
+                    [ngClass]="{
+                    'selected': i === selectedIndex,
+                    'prev': i === selectedIndex - 1,
+                    'next': i === selectedIndex + 1,
+                    'prev2': i === selectedIndex - 2,
+                    'next2': i === selectedIndex + 2,
+                    'hideLeft': i < selectedIndex - 2,
+                    'hideRight': i > selectedIndex + 2}">
+                        <div class="slider-img">
+                                <img [src]="'http://localhost:3000/' + pd.image" 
+                                [alt]="'Imagen de' + pd.postname" 
+                                [routerLink]="['/noticias',pd.id]"> 
+                                <div class="text-hover">
+                                    <div>{{pd.postname}}{{i}}</div>                         
+                                </div>
+                        </div>
+
+
+                            <!--Button Area-->         
+                        <button *ngIf="PrevButtonVisible" class="btn-slider btn-prev" (click)="showPrev(i)">
+                            <i class="fas fa-arrow-circle-left icon-slider icon-prev"></i>
+                        </button>
+
+                        
+                        <button *ngIf="NextButtonVisible" class="btn-slider btn-next">
+                            @if (showicon) {
+                                <i class="fas fa-arrow-circle-right icon-slider icon-next" (click)="showNext(i)"></i>
+                            }
+                            @else{
+                                <i class="fa fa-plus-square icon-slider icon-next" (click)="changeslice()"></i>
+                            }
+                        </button>                 
+                        
+                    </div>
+            </ng-container>
+        </div>      
+    </div>
+                
+
+
+
+</div>
+
+
+
+                

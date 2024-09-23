@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  position: relative;
+}
+
+.mat-expansion-indicator::after {
+  color: rgb(253, 253, 253) !important;
+}
+
+@font-face {
+  font-family: "Dancing_Script";
+  src: url("assets/fonts/Dancing_Script/static/DancingScript-Regular.ttf");
+  font-weight: normal;
+  font-style: italic;
+}/*# sourceMappingURL=styles.css.map */

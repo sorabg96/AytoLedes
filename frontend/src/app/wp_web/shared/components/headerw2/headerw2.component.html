@@ -1,0 +1,151 @@
+    <!--HORIZONTAL NAV-->
+    <mat-toolbar color="primary">
+      <div fxShow="true" fxHide.gt-sm="true">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div class="container">
+        <a routerLink="/" class="siteName">
+            <img src="assets/LedesmaShield2.png" class="image--cover img-responsive">
+            <div class="container-siteName">
+              <span>Ayuntamiento Ledesma</span>
+            </div>
+        </a>
+    </div>
+      <span class="example-spacer"></span>
+      <div class="content-horizontal-nav" fxShow="true" fxHide.lt-md="true">
+        
+       <ul>
+            <li><a routerLink="inicio">Inicio</a></li>
+
+            <li><a routerLink="ayuntamiento" style="z-index:1050" >
+                Ayuntamiento
+            </a>
+                <ul class="dropdown">
+                    <li routerLink="ayuntamiento" fragment="saludo_alcalde">
+                        <a>Saludo Alcaldia</a>
+                    </li>
+                    <li routerLink="ayuntamiento" fragment="coorporacion_municipal">
+                        <a>Coorporacion Municipal</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a style="z-index:1050" href="https://ledesma.sedelectronica.es/info.0">
+                Sede Electronica
+            </a></li>
+
+            <li><a routerLink="serviciosMunicipales" style="z-index:1050">
+                Servicios Municipales
+            </a>
+                <ul class="dropdown">
+                        <li *ngFor="let ms of MSData" routerLink = "serviciosMunicipales" fragment="{{ms.title}}"><a>{{ms.title}}</a></li>
+                </ul>
+            </li>
+
+            <li><a routerLink="zonasDeportivasMunicipales" style="z-index:1050">
+                Zonas Deportivas Municipales
+            </a>
+                <ul class="dropdown">
+                        <li *ngFor="let sa of SAData" routerLink = "zonasDeportivasMunicipales" fragment="{{sa.title}}"><a>{{sa.title}}</a></li>
+                </ul>   
+            </li>
+
+            <li><a routerLink="otrosServicios" style="z-index:1050">
+                Otros Servicios Publicos
+            </a>
+                <ul class="dropdown">
+                        <li *ngFor="let os of OSData" routerLink = "otrosServicios" fragment="{{os.title}}"><a>{{os.title}}</a></li>
+                </ul>
+            </li>
+
+            <li><a routerLink="asociaciones" style="z-index:1050">
+                Asociaciones
+            </a>
+                <ul class="dropdown" >
+                        <li *ngFor="let a of AData" routerLink="asociaciones" fragment="{{a.title}}"><a>{{a.title}}</a></li>
+                </ul>   
+            </li>
+        </ul>
+        
+      </div>
+    </mat-toolbar>
+
+    <!--SIDENAV-->
+
+      <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+
+            <a mat-button class="nav-components-no-sub"  routerLink="inicio" (click)="sidenav.toggle()">Inicio</a>
+
+            <mat-expansion-panel class="nav-components">
+                <mat-expansion-panel-header>
+                    <a class="subnav" mat-button routerLink="ayuntamiento" (click)="sidenav.toggle()">Ayuntamiento</a>
+                </mat-expansion-panel-header>
+                <div>
+                        <div class="subnav2" mat-menu-item routerLink="ayuntamiento" fragment="saludo_alcalde" (click)="sidenav.toggle()">Saludo Alcalde</div>
+                        <div class="subnav2" mat-menu-item routerLink="ayuntamiento" fragment="coorporacion_municipal" (click)="sidenav.toggle()">Coorporacion Municipal</div>
+                </div>
+            </mat-expansion-panel>
+           
+            <a mat-button class="nav-components-no-sub" (click)="sidenav.toggle()" href="https://ledesma.sedelectronica.es/info.0">Sede Electronica</a>
+
+
+            <mat-expansion-panel class="nav-components">
+                <mat-expansion-panel-header >
+                    <a class="subnav" mat-button routerLink="serviciosMunicipales" (click)="sidenav.toggle()">Servicios Municipales</a>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="subnav2" mat-menu-item *ngFor="let ms of MSData" routerLink="serviciosMunicipales" fragment="{{ms.title}}" (click)="sidenav.toggle()">{{ms.title}}</div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="nav-components">
+                <mat-expansion-panel-header >
+                    <a class="subnav" mat-button routerLink="zonasDeportivasMunicipales" (click)="sidenav.toggle()">Zonas Deportivas Municipales</a>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="subnav2" mat-menu-item *ngFor="let sa of SAData" routerLink="zonasDeportivasMunicipales" fragment="{{sa.title}}" (click)="sidenav.toggle()">{{sa.title}}</div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="nav-components">
+                <mat-expansion-panel-header >
+                    <a class="subnav" mat-button routerLink="otrosServicios" (click)="sidenav.toggle()">Otros Servicios Publicos</a>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="subnav2" mat-menu-item *ngFor="let os of OSData" routerLink = "otrosServicios" fragment="{{os.title}}" (click)="sidenav.toggle()">{{os.title}}</div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="nav-components">
+                <mat-expansion-panel-header>
+                    <a class="subnav" mat-button routerLink="asociaciones" (click)="sidenav.toggle()" >Asociaciones</a>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="subnav2" mat-menu-item *ngFor="let a of AData" routerLink="asociaciones" fragment="{{a.title}}" (click)="sidenav.toggle()">{{a.title}}</div>
+                </div>
+                
+            </mat-expansion-panel>
+            
+      </mat-sidenav>     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

@@ -1,0 +1,138 @@
+.product {
+  cursor: pointer;
+  padding: 20px 0px;
+  max-width: 1600px;
+  margin: auto;
+}
+@media screen and (max-width: 1600px) {
+  .product {
+    max-width: 1280px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .product {
+    max-width: 960px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .product {
+    max-width: 640px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .product {
+    max-width: 320px;
+  }
+}
+
+.slider-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+}
+
+.slider-main {
+  position: absolute;
+  width: 200%;
+}
+@media screen and (max-width: 320px) {
+  .slider-main {
+    width: 100%;
+  }
+}
+
+.item {
+  background: rgb(0, 0, 0);
+  display: inline-block;
+  width: 300px;
+  height: 400px;
+  position: relative;
+  margin: 0 10px;
+}
+@media screen and (max-width: 320px) {
+  .item {
+    width: 100%;
+    margin: 0px;
+  }
+}
+
+img {
+  width: inherit;
+  height: inherit;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.btn-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5%;
+  padding: 0;
+  color: white;
+  text-align: center;
+  background: 0 0;
+  border: 0;
+  cursor: pointer;
+}
+@media screen and (max-width: 1600px) {
+  .btn-slider {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .btn-slider {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .btn-slider {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .btn-slider {
+    padding: 40px;
+  }
+}
+
+.btn-prev {
+  left: 0;
+}
+
+.btn-next {
+  right: 0;
+}
+
+.icon-slider {
+  color: rgb(255, 255, 255);
+  opacity: 0.5;
+  transition: all 0.15s ease;
+  text-shadow: 0 0 3px #000;
+}
+
+.icon-slider:hover {
+  opacity: 0.9;
+  color: yellow;
+}
+
+.icon-slider:active {
+  opacity: 0.5;
+}
+
+.icon-next,
+.icon-prev {
+  font-size: 25px;
+}/*# sourceMappingURL=post-slider.component.css.map */

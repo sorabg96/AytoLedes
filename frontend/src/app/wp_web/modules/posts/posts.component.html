@@ -1,0 +1,67 @@
+<div class="bakgroundPosts">
+    <div class="content">
+            <!--MAIN POST SECTION-->
+            <div class="cover">
+                <div class="title">{{postname}}</div>
+                <hr class="hrtitle">
+                <div [ngClass]="{'container-grid': description,'container-grid2': !description}">
+                    <img class="imageMain" src="{{imgURL}}" [alt]="imgURL" (click)="openImage(imgURL)">
+                    <div id="text_des" class="description">{{description}}</div>
+                </div>
+            </div>
+
+            <!--SLIDER SIDEIMAGES-->
+            @defer (on timer(200)) { 
+                    
+                    <div *ngIf="imgsURL.length > 0" coverSlider style="background-color: none; width: 100%; display: block;">
+                        <app-post-slider [IsDescript]="isDescript" [images]="imgsURL"></app-post-slider> 
+                    </div>
+                    
+            }            
+
+            
+
+            <!--PDF DOWNLOAD-->
+            <div *ngIf="pdfURL.length > 0" class="containerPDF">
+                <hr class="hrpdf">
+                <div class="titlepdf">Enlaces PDF</div>
+                <div *ngFor="let pdf of pdfURL; let i=index" >
+                    <a href="{{pdf.value}}" target="_blank">Enlace {{i +1}}</a>
+                </div>
+            </div> 
+   
+            <!--PREV/NEXT POST-->
+            <div class="containerEnd">
+                
+                    <div *ngIf="previous" class="previousPost" (click)="NavigatepostBefore()">
+                        <div class="previousPostICON">&laquo;</div>
+                        <div class="previousPostNAME">{{postBeforeNAME}}</div>
+                    </div>
+                    <!--<div class="share">
+                        <a href=""><img class="icon-socialmedia" src="./assets/social-media/instagram.png"></a>
+                        <a href=""><img class="icon-socialmedia" src="./assets/social-media/facebook.png"></a>
+                        <a href=""><img class="icon-socialmedia" src="./assets/social-media/twitterx.png"></a>
+                    </div>-->
+                    <div *ngIf="next" class="nextPost" (click)="NavigatepostAfter()">
+                        <div class="nextPostNAME">{{postAfterNAME}}</div>
+                        <div class="nextPostICON">&raquo;</div>
+                    </div>
+                
+            </div>
+
+
+            <div class=""></div>
+    </div>
+
+    <!--FOOTER-->
+</div> 
+        @defer (on timer(200)) { 
+            <div>
+                <app-footerw></app-footerw>
+            </div>
+        }  
+
+
+
+
+
